@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-interview-platform
+
+  datasource:
+    url: jdbc:h2:file:./data/interviewdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# Local Whisper microservice
+whisper:
+  service-url: http://localhost:8001
+
+# Google Gemini API (free tier)
+gemini:
+  api-key: AIzaSyBG-sB0tcggEVUR9BTDugQ_Mjs9y-ddTCg
+  chat-model: gemini-1.5-flash
+  embedding-model: text-embedding-004
+  base-url: https://generativelanguage.googleapis.com/v1beta
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:mySecretKeyForDevelopmentOnlyPleaseChangeInProduction2024!@#$}
+  expiration: 86400000
+
+# File uploads
+upload:
+  dir: ./uploads
